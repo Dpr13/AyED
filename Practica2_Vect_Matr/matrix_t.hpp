@@ -139,34 +139,15 @@ template<class T> void matrix_t<T>::multiply(const matrix_t<T>& A, const matrix_
   assert(A.get_m() == B.get_n()); // Comprobamos que la matriz A tiene el mismo número de filas que la B de columnas
   resize(A.get_m(), B.get_n());
   double producto{0};
-  for (int j = 1; j <= get_n(); ++j) {
-    for (int k = 0; k < A.get_m(); ++k) {
-      if (j == 1) {
-        for (int t = 0; t <= B.get_n(); ++t) {
-          if(k == 0){
-            producto = producto + A.v_[k * A.get_n() + t] * B.v_[t * B.get_n() + k];
-            at(j,k + 1) = producto;
-          }
-          else {
-            producto = producto + A.v_[(k-1) * A.get_n() + t] * B.v_[t * B.get_n() + k];
-            at(j,k + 1) = producto;
-          }
-        }      
-        producto = 0;
+  for (int k{1}; k <= A.get_m(); ++k){
+    for (int i{1}; i <= A.get_m(); ++i) {
+      for (int j{1}; j <= A.get_n(); ++j) {
+        producto = producto + A.at(i,j) * B.at(j,k);       
       }
-      if (j == 2){
-        for (int t = 0; t <= B.get_n(); ++t) {
-          if(k == 0){
-            producto = producto + A.v_[(k+1) * A.get_n() + t] * B.v_[t * B.get_n() + k];
-            at(j,k + 1) = producto;
-          }
-          else {
-            producto = producto + A.v_[(k) * A.get_n() + t] * B.v_[t * B.get_n() + k];
-            at(j,k + 1) = producto;
-          }
-        }
-        producto = 0;
-      }
+      at(i, k) = producto;
+      producto = 0;
     }
   }
 }
+// 28 14 
+// 79 44
