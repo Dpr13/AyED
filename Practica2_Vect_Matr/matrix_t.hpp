@@ -149,5 +149,3 @@ template<class T> void matrix_t<T>::multiply(const matrix_t<T>& A, const matrix_
     }
   }
 }
-// 28 14 
-// 79 44
