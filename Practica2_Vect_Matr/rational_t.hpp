@@ -36,9 +36,9 @@ class rational_t {
   rational_t opposite(void) const; // Método para obetener el opuesto
   rational_t reciprocal(void) const;    // Método para obtener el recíproco
 
-  bool is_equal(const rational_t&, const double precision = EPSILON) const; // Números iguales
-  bool is_greater(const rational_t&, const double precision = EPSILON) const; // Número mayor que el otro demandado
-  bool is_less(const rational_t&, const double precision = EPSILON) const; // Número menor que el otro demandado
+  bool is_equal(const rational_t&, const double kPrecision = EPSILON) const; // Números iguales
+  bool is_greater(const rational_t&, const double kPrecision = EPSILON) const; // Número mayor que el otro demandado
+  bool is_less(const rational_t&, const double kPrecision = EPSILON) const; // Número menor que el otro demandado
 
   rational_t add(const rational_t&) const; // Suma de racionales
   rational_t substract(const rational_t&) const; //Resta de racionales
