@@ -44,8 +44,8 @@ template<class T> class vector_t {
 };
 
 // Constructor dándose la medida
-template<class T> vector_t<T>::vector_t(const int n) { 
-  sz_ = n;
+template<class T> vector_t<T>::vector_t(const int numero) { 
+  sz_ = numero;
   build();
 }
 
@@ -73,16 +73,16 @@ template<class T> void vector_t<T>::destroy() {
 }
 
 // Redefinición de la medida del vector
-template<class T> void vector_t<T>::resize(const int n) {
+template<class T> void vector_t<T>::resize(const int numero) {
   destroy();    // Se destruye primero el vector
-  sz_ = n;
+  sz_ = numero;
   build();      // Se crea de nuevo con la nueva medida
 }
 
 // Obtención del valor de un elemento del vector
-template<class T> inline T vector_t<T>::get_val(const int i) const {
-  assert(i >= 0 && i < get_size());
-  return v_[i];
+template<class T> inline T vector_t<T>::get_val(const int elemento) const {
+  assert(elemento >= 0 && elemento < get_size());
+  return v_[elemento];
 }
 
 // Obtención de la medida de un elemento del vector
@@ -91,31 +91,31 @@ template<class T> inline int vector_t<T>::get_size() const {
 }
 
 // Se actualiza el valor seleccionado
-template<class T> void vector_t<T>::set_val(const int i, const T d) {
-  assert(i >= 0 && i < get_size());
-  v_[i] = d;
+template<class T> void vector_t<T>::set_val(const int elemento, const T valor) {
+  assert(elemento >= 0 && elemento < get_size());
+  v_[elemento] = valor;
 }
 
 // Se actualiza el valor del elemento
-template<class T> T& vector_t<T>::at(const int i) {
-  assert(i >= 0 && i < get_size());
-  return v_[i];
+template<class T> T& vector_t<T>::at(const int elemento) {
+  assert(elemento >= 0 && elemento < get_size());
+  return v_[elemento];
 }
 
 // Se actualiza el valor del elemento
-template<class T> T& vector_t<T>::operator[](const int i) {
-  return at(i);
+template<class T> T& vector_t<T>::operator[](const int elemento) {
+  return at(elemento);
 }
 
 // Se actualiza el valor del elemento
-template<class T> const T& vector_t<T>::at(const int i) const {
-  assert(i >= 0 && i < get_size());
-  return v_[i];
+template<class T> const T& vector_t<T>::at(const int elemento) const {
+  assert(elemento >= 0 && elemento < get_size());
+  return v_[elemento];
 }
 
 // Se actualiza el valor del elemento
-template<class T> const T& vector_t<T>::operator[](const int i) const {
-  return at(i);
+template<class T> const T& vector_t<T>::operator[](const int elemento) const {
+  return at(elemento);
 }
 
 // Se imprime el vector
@@ -138,23 +138,23 @@ template<class T> void vector_t<T>::read(istream& is) {
 // FASE II: producto escalar
 // Producto escalar de dos vectores
 // Parámetros: dos vectores a usar
-template<class T> T scal_prod(const vector_t<T>& v, const vector_t<T>& w) {
-  assert(v.get_size() == w.get_size()); // Comprobamos que las medidas de ambos vectores son iguales
+template<class T> T scal_prod(const vector_t<T>& vector_v, const vector_t<T>& vector_w) {
+  assert(vector_v.get_size() == vector_w.get_size()); // Comprobamos que las medidas de ambos vectores son iguales
   double producto_escalar{0};
-  for (int i{0}; i < v.get_size(); ++i) {
-    producto_escalar = producto_escalar + v[i] * w[i];
+  for (int i{0}; i < vector_v.get_size(); ++i) {
+    producto_escalar = producto_escalar + vector_v[i] * vector_w[i];
   }
   return producto_escalar;
 }
 
 // Prodcuto escalar de dos vectpres
 // Parámetros: dos vectores a usar
-double scal_prod(const vector_t<rational_t>& v, const vector_t<rational_t>& w) {
-  assert(v.get_size() == w.get_size()); // Comprobamos que las medidas de ambos vectores son iguales
+double scal_prod(const vector_t<rational_t>& vector_v, const vector_t<rational_t>& vector_w) {
+  assert(vector_v.get_size() == vector_w.get_size()); // Comprobamos que las medidas de ambos vectores son iguales
   double producto_escalar{0};
-  for (int i{0}; i < v.get_size(); ++i) {
+  for (int i{0}; i < vector_v.get_size(); ++i) {
     rational_t total{0,1};
-    total = v[i] * w[i];
+    total = vector_v[i] * vector_w[i];
     producto_escalar = producto_escalar + total.value();
   }
   return producto_escalar;
