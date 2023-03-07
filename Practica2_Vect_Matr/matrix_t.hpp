@@ -75,31 +75,31 @@ template<class T> inline int matrix_t<T>::get_n() const {
 }
 
 // Devuelve el valor del elemento que se pide
-// Parámetros: númro de filas y de columnas
-template<class T> T& matrix_t<T>::at(const int i, const int j) {
-  assert(i > 0 && i <= get_m());
-  assert(j > 0 && j <= get_n());
-  return v_[pos(i, j)];
+// Parámetros: fila y columna del elemento
+template<class T> T& matrix_t<T>::at(const int fila, const int columna) {
+  assert(fila > 0 && fila <= get_m());
+  assert(columna > 0 && columna <= get_n());
+  return v_[pos(fila, columna)];
 }
 
 // Devuelve el valor del elemento
 // Parámetros: fila y columna
-template<class T> T& matrix_t<T>::operator()(const int i, const int j) {
-  return at(i, j);
+template<class T> T& matrix_t<T>::operator()(const int fila, const int columna) {
+  return at(fila, columna);
 }
 
 // Devuelve el valor del elemento
 // Parámetros: fila y columna
-template<class T> const T& matrix_t<T>::at(const int i, const int j) const {
-  assert(i > 0 && i <= get_m());
-  assert(j > 0 && j <= get_n());
-  return v_[pos(i, j)];
+template<class T> const T& matrix_t<T>::at(const int fila, const int columna) const {
+  assert(fila > 0 && fila <= get_m());
+  assert(columna > 0 && columna <= get_n());
+  return v_[pos(fila, columna)];
 }
 
 // Devuelve el valor del elemento
 // Parámetros: fila y columna
-template<class T> const T& matrix_t<T>::operator()(const int i, const int j) const {
-  return at(i, j);
+template<class T> const T& matrix_t<T>::operator()(const int fila, const int columna) const {
+  return at(fila, columna);
 }
 
 // Imprime la matriz con todos sus valores
@@ -126,10 +126,10 @@ template<class T> void matrix_t<T>::read(istream& is) {
 
 // Devuelve la posición en la que se encuentra el elemento
 // Parámetros: fila y columna
-template<class T> inline int matrix_t<T>::pos(const int i, const int j) const {
-  assert(i > 0 && i <= get_m());
-  assert(j > 0 && j <= get_n());
-  return (i - 1) * get_n() + (j - 1);
+template<class T> inline int matrix_t<T>::pos(const int fila, const int columna) const {
+  assert(fila > 0 && fila <= get_m());
+  assert(columna > 0 && columna <= get_n());
+  return (fila - 1) * get_n() + (columna - 1);
 }
 
 // FASE III: producto matricial
