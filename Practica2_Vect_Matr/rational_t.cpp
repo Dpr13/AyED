@@ -56,23 +56,23 @@ rational_t rational_t::reciprocal() const {
 // Compara si el valor de un número racional a es igual a uno b
 // Se debe dar que |a−b|<ϵ 
 // Parámetros: número racional a evaluar y ϵ
-bool rational_t::is_equal(const rational_t& r, const double precision) const { 
-  return fabs(value() - r.value()) < precision;
+bool rational_t::is_equal(const rational_t& racional, const double kPrecision) const { 
+  return fabs(value() - racional.value()) < kPrecision;
 }
 
 
 // Compara si el valor de un número racional a es mayor que uno b
 // Se debe dar que a−b>ϵ
 // Parámetros: número racional a evaluar y ϵ
-bool rational_t::is_greater(const rational_t& r, const double precision) const {
-  return (value() - r.value()) > precision;
+bool rational_t::is_greater(const rational_t& racional, const double kPrecision) const {
+  return (value() - racional.value()) > kPrecision;
 }
 
 // Compara si el valor de un número racional a es menor que uno b
 // Se debe dar que b−a>ϵ
 // Parámetros: número racional a evaluar y ϵ
-bool rational_t::is_less(const rational_t& r, const double precision) const {
-  return r.is_greater(*this, precision);
+bool rational_t::is_less(const rational_t& racional, const double kPrecision) const {
+  return racional.is_greater(*this, kPrecision);
 }
 
 // Operaciones
@@ -98,35 +98,35 @@ rational_t rational_t::multiply(const rational_t& r) const {
 
 // División de racionales
 // Parámetro: número por el que se divide
-rational_t rational_t::divide(const rational_t& r) const {
-  return multiply(r.reciprocal());
+rational_t rational_t::divide(const rational_t& racional) const {
+  return multiply(racional.reciprocal());
 }
 
 // FASE I: operadores
 // Sobrecarga de operador de suma
 // Parámetros: dos números racionales a sumar
-rational_t operator+(const rational_t& a, const rational_t& b) {
-  return rational_t(a.get_num() * b.get_den() + b.get_num() * a.get_den(),
-                    a.get_den() * b.get_den());
+rational_t operator+(const rational_t& racioal_a, const rational_t& racioal_b) {
+  return rational_t(racioal_a.get_num() * racioal_b.get_den() + racioal_b.get_num() * racioal_a.get_den(),
+                    racioal_a.get_den() * racioal_b.get_den());
 }
 
 // Sobrecarga de operador de resta
 // Parámetros: dos números racionales a restar
-rational_t operator-(const rational_t& a, const rational_t& b) {
-  return rational_t(a.get_num() * b.get_den() - b.get_num() * a.get_den(),
-                    a.get_den() * b.get_den());
+rational_t operator-(const rational_t& racioal_a, const rational_t& racioal_b) {
+  return rational_t(racioal_a.get_num() * racioal_b.get_den() - racioal_b.get_num() * racioal_a.get_den(),
+                    racioal_a.get_den() * racioal_b.get_den());
 }
 
 // Sobrecarga de operador de multiplicar
 // Parámetros: dos números racionales a multiplicar
-rational_t operator*(const rational_t& a, const rational_t& b) {
-  return rational_t(a.get_num() * b.get_num(), a.get_den() * b.get_den());
+rational_t operator*(const rational_t& racioal_a, const rational_t& racioal_b) {
+  return rational_t(racioal_a.get_num() * racioal_b.get_num(), racioal_a.get_den() * racioal_b.get_den());
 }
 
 // Sobrecarga de operador de dividir
 // Parámetros: dos números racionales a dividir
-rational_t operator/(const rational_t& a, const rational_t& b) {
-  return rational_t(a.get_num() * b.get_den(), a.get_den() * b.get_num());
+rational_t operator/(const rational_t& racioal_a, const rational_t& racioal_b) {
+  return rational_t(racioal_a.get_num() * racioal_b.get_den(), racioal_a.get_den() * racioal_b.get_num());
 }
 
 // E/S
@@ -145,14 +145,14 @@ void rational_t::read(istream& is) {
 
 // Sobrecarga de operador de flujo de salida
 // Parámetros: número racional a imprimir y flujo de salida
-ostream& operator<<(ostream& os, const rational_t& r) {
-  r.write(os);
+ostream& operator<<(ostream& os, const rational_t& racional) {
+  racional.write(os);
   return os;
 }
 
 // Sobrecarga de operador de flujo de entrada
 // Parámetros: número racional a cambiar y flujo de entrada
-istream& operator>>(istream& is, rational_t& r) {
-  r.read(is);
+istream& operator>>(istream& is, rational_t& racional) {
+  racional.read(is);
   return is;
 }
